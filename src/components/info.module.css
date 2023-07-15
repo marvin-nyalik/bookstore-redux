@@ -4,14 +4,15 @@
   display: flex;
   flex-direction: row;
   margin: 10px auto;
-  height: 7rem;
+  padding: 5px;
+  height: auto;
   justify-content: flex-start;
   align-items: center;
 }
 
 .cont {
   width: 50%;
-  height: 12rem;
+  height: auto;
   display: flex;
   flex-direction: column;
   margin: auto 0;
@@ -111,6 +112,15 @@
   line-height: normal;
   letter-spacing: normal;
   color: #4386bf;
+}
+
+.delete {
+  color: white;
+  background: rgb(80, 78, 78);
+  width: 5rem;
+  height: 4vh;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .footer {
