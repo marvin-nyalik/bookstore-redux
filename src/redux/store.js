@@ -4,8 +4,8 @@ import booksSlice from './books/booksSlice';
 import categoriesSlice from './categories/categoriesSlice';
 
 const rootReducer = combineReducers({
-  books: booksSlice.reducer,
-  categories: categoriesSlice.reducer,
+  books: booksSlice,
+  categories: categoriesSlice,
 });
 
 const store = configureStore({
