@@ -3,10 +3,10 @@ import BookInfoCol from './BookInfoCol';
 import ChapterInfo from './Chapter';
 import Progress from './progressBar';
 
-const bookInfo = ({ book }) => (
+const bookInfo = ({ book, setBooks }) => (
   <div className={infoCss.cover}>
     <div className={infoCss.cont}>
-      <BookInfoCol book={book} />
+      <BookInfoCol book={book} setBooks={setBooks} />
     </div>
     <div className={infoCss.progress}>
       <Progress book={book} />

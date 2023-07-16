@@ -34,22 +34,18 @@ const Books = () => {
     },
   ]);
 
-  const addNewBook = (book) => {
-    setBooks([...allBooks, book]);
-  };
-
   return (
     <>
       <ul>
         {allBooks.map((book) => (
           <div key={book.title}>
             {' '}
-            <BookInfo book={book} />
+            <BookInfo book={book} setBooks={setBooks} />
             {' '}
           </div>
         ))}
       </ul>
-      <AddBook addNewBook={addNewBook} />
+      <AddBook setBooks={setBooks} />
     </>
   );
 };
