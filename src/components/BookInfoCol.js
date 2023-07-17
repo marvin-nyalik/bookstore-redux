@@ -1,9 +1,14 @@
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import infoCss from './info.module.css';
+import { removeBook } from '../redux/books/booksSlice';
 
 const BookInfo = ({ bookId }) => {
   const book = useSelector((state) => state.books.find((book) => book.item_id === bookId));
+  const dispatch = useDispatch();
+  const deleteBook = (id) => {
+    dispatch(removeBook({ item_id: id }));
+  };
 
   return (
     <>
@@ -14,7 +19,7 @@ const BookInfo = ({ bookId }) => {
         Comments
         <span>|</span>
         {' '}
-        <button type="button" className={infoCss.delete}>Delete</button>
+        <button type="button" className={infoCss.delete} onClick={() => deleteBook(bookId)}>Delete</button>
         <span>|</span>
         {' '}
         Edit
