@@ -5,13 +5,6 @@ import infoCss from './info.module.css';
 const BookInfo = ({ bookId }) => {
   const book = useSelector((state) => state.books.find((book) => book.item_id === bookId));
 
-  // const handleClick = (book) => {
-  //   setBooks((previousState) => {
-  //     const newBooks = previousState.filter((mybook) => mybook.title !== book.title);
-  //     return newBooks;
-  //   });
-  // };
-
   return (
     <>
       <p className={infoCss.category}>{book.category}</p>
