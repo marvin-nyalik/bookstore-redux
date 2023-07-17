@@ -1,12 +1,12 @@
 import infoCss from './info.module.css';
 
-const chapterInfo = ({ book }) => (
+const chapterInfo = () => (
   <>
     <p className={infoCss.chapterTitle}>CURRENT CHAPTER</p>
     <p className={infoCss.chapterNo}>
       Chapter
       {' '}
-      {book.chapter}
+      12
     </p>
     <button type="button" className={infoCss.update}>UPDATE CHAPTER</button>
   </>
