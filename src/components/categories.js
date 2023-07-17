@@ -1,7 +1,7 @@
 const categories = () => {
   <div>
     CATEGORIES WILL BE IMPLEMEMTED LATER
-  </div>
+  </div>;
 };
 
 export default categories;
