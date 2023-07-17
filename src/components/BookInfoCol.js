@@ -1,12 +1,16 @@
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import PropTypes from 'prop-types';
 import infoCss from './info.module.css';
 
-const bookInfo = ({ book, setBooks }) => {
-  const handleClick = (book) => {
-    setBooks((previousState) => {
-      const newBooks = previousState.filter((mybook) => mybook.title !== book.title);
-      return newBooks;
-    });
-  };
+const BookInfo = ({ bookId }) => {
+  const book = useSelector((state) => state.books.find((book) => book.item_id === bookId));
+
+  // const handleClick = (book) => {
+  //   setBooks((previousState) => {
+  //     const newBooks = previousState.filter((mybook) => mybook.title !== book.title);
+  //     return newBooks;
+  //   });
+  // };
 
   return (
     <>
@@ -17,7 +21,7 @@ const bookInfo = ({ book, setBooks }) => {
         Comments
         <span>|</span>
         {' '}
-        <button type="button" onClick={() => handleClick(book)} className={infoCss.delete}>Delete</button>
+        <button type="button" className={infoCss.delete}>Delete</button>
         <span>|</span>
         {' '}
         Edit
@@ -26,4 +30,8 @@ const bookInfo = ({ book, setBooks }) => {
   );
 };
 
-export default bookInfo;
+BookInfo.propTypes = {
+  bookId: PropTypes.string.isRequired,
+};
+
+export default BookInfo;
