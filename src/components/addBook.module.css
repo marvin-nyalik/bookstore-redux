@@ -57,3 +57,32 @@
   color: white;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .cover {
+    width: 90vw;
+    margin: 10px auto;
+  }
+
+  .heading {
+    margin: 5px auto;
+  }
+
+  .form {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .input {
+    width: 80%;
+    height: 3vh;
+  }
+
+  .submit {
+    width: 8rem;
+    margin-top: 20px;
+    display: flex;
+    position: relative;
+    left: 35vw;
+  }
+}

@@ -146,3 +146,49 @@
   height: 80%;
   border: solid 1px #e8e8e8;
 }
+
+@media screen and (max-width: 768px) {
+  .cover {
+    flex-direction: column;
+  }
+
+  .cont {
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .progress {
+    width: 20%;
+    border: none;
+    height: 15vh;
+    display: flex;
+  }
+
+  .chapter {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 0;
+    border-top: 1px solid lightgray;
+    padding-top: 20px;
+  }
+
+  .chapterTitle {
+    margin: 0;
+  }
+
+  .chapterNo {
+    margin: 5px 0;
+  }
+
+  .update {
+    margin: 0;
+    padding-bottom: 5px;
+    width: 90%;
+  }
+
+  .title {
+    width: 80%;
+  }
+}
