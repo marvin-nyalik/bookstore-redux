@@ -1,25 +1,34 @@
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deleteBook, fetchBooks } from '../redux/books/booksSlice';
 import infoCss from './info.module.css';
-import { removeBook } from '../redux/books/booksSlice';
 
 const BookInfo = ({ bookId }) => {
-  const book = useSelector((state) => state.books.find((book) => book.item_id === bookId));
   const dispatch = useDispatch();
-  const deleteBook = (id) => {
-    dispatch(removeBook({ item_id: id }));
-  };
 
+  const book = useSelector((state) => Object.entries(state.books.data)
+    .find((book) => bookId === book[0]));
+
+  const deleteABook = async (bookId) => {
+    await dispatch(deleteBook({ bookId }));
+    dispatch(fetchBooks());
+  };
   return (
     <>
-      <p className={infoCss.category}>{book.category}</p>
-      <h3 className={infoCss.title}>{book.title}</h3>
-      <p className={infoCss.author}>{book.author}</p>
+      <p className={infoCss.category}>{book[1][0].category}</p>
+      <h3 className={infoCss.title}>{book[1][0].title}</h3>
+      <p className={infoCss.author}>{book[1][0].author}</p>
       <p className={infoCss.footer}>
         Comments
         <span>|</span>
         {' '}
-        <button type="button" className={infoCss.delete} onClick={() => deleteBook(bookId)}>Delete</button>
+        <button
+          type="button"
+          className={infoCss.delete}
+          onClick={() => deleteABook(book[0])}
+        >
+          Delete
+        </button>
         <span>|</span>
         {' '}
         Edit
