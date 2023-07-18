@@ -1,35 +1,58 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-// Initial state:
-const initialState = [
-  {
-    item_id: 'item1',
-    title: 'The Great Gatsby',
-    author: 'John Smith',
-    category: 'Fiction',
-  },
-  {
-    item_id: 'item2',
-    title: 'Anna Karenina',
-    author: 'Leo Tolstoy',
-    category: 'Fiction',
-  },
-  {
-    item_id: 'item3',
-    title: 'The Selfish Gene',
-    author: 'Richard Dawkins',
-    category: 'Nonfiction',
-  },
-];
+const appId = 'NkLjzxrLqkaakBCw8icH';
+const baseUrl = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps';
+export const getBooksUrl = `${baseUrl}/${appId}/books`;
+
+export const fetchBooks = createAsyncThunk('books/fetch',
+  async () => {
+    const books = await axios.get(getBooksUrl);
+    return books.data;
+  });
+
+export const addBook = createAsyncThunk('books/add', async ({
+  title, author, category, itemId,
+}, thunkAPI) => {
+  const data = {
+    title,
+    author,
+    category,
+    item_id: itemId,
+  };
+  await axios.post(getBooksUrl, data);
+  thunkAPI.dispatch(fetchBooks());
+});
+
+export const deleteBook = createAsyncThunk('books/delete', async ({ bookId }, thunkAPI) => {
+  await axios.delete(getBooksUrl.concat('/') + bookId);
+  thunkAPI.dispatch(fetchBooks());
+});
 
 const booksSlice = createSlice({
   name: 'books',
-  initialState,
+  initialState: {
+    loading: false,
+    data: [],
+    error: null,
+  },
   reducers: {
-    addBook: (state, action) => [...state, action.payload],
-    removeBook: (state, action) => state.filter((book) => book.item_id !== action.payload.item_id),
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooks.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchBooks.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchBooks.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
-export const { addBook, removeBook } = booksSlice.actions;
-export default booksSlice.reducer;
+export const { reducer } = booksSlice;
