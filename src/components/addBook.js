@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import add from './addBook.module.css';
-import { addBook } from '../redux/books/booksSlice';
+import { addBook, fetchBooks } from '../redux/books/booksSlice';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const dispatch = useDispatch();
-  const length = useSelector((state) => state.books.length);
+  const length = useSelector((state) => Object.entries(state.books.data).length);
 
   const handleTitleChange = (event) => {
     const title = event.target.value;
@@ -19,14 +19,15 @@ const AddBook = () => {
     setAuthor(author);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const category = 'Code';
-    dispatch(addBook({
-      title, author, category, item_id: `Item${length + 1}`,
+    await dispatch(addBook({
+      title, author, category, itemId: `Item${length + 1}`,
     }));
     setAuthor('');
     setTitle('');
+    dispatch(fetchBooks());
   };
 
   return (
