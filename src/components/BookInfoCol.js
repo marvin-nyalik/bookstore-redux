@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteBook, fetchBooks } from '../redux/books/booksSlice';
+import { deleteBook } from '../redux/books/booksSlice';
 import infoCss from './info.module.css';
 
 const BookInfo = ({ bookId }) => {
@@ -11,7 +11,6 @@ const BookInfo = ({ bookId }) => {
 
   const deleteABook = async (bookId) => {
     await dispatch(deleteBook({ bookId }));
-    dispatch(fetchBooks());
   };
   return (
     <>

@@ -13,7 +13,7 @@ export const fetchBooks = createAsyncThunk('books/fetch',
 
 export const addBook = createAsyncThunk('books/add', async ({
   title, author, category, itemId,
-}) => {
+}, thunkAPI) => {
   const data = {
     title,
     author,
@@ -21,10 +21,12 @@ export const addBook = createAsyncThunk('books/add', async ({
     item_id: itemId,
   };
   await axios.post(getBooksUrl, data);
+  thunkAPI.dispatch(fetchBooks());
 });
 
-export const deleteBook = createAsyncThunk('books/delete', async ({ bookId }) => {
+export const deleteBook = createAsyncThunk('books/delete', async ({ bookId }, thunkAPI) => {
   await axios.delete(getBooksUrl.concat('/') + bookId);
+  thunkAPI.dispatch(fetchBooks());
 });
 
 const booksSlice = createSlice({
