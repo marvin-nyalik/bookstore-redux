@@ -7,24 +7,36 @@
   height: auto;
   padding: 20px 20px;
   padding-bottom: 5rem;
+  overflow: hidden;
 }
 
 .heading {
   width: 10.875rem;
   height: 1.5rem;
-  margin: 1.813rem 32.75rem 1.188rem 0;
+  margin: 1.813rem 3.75rem 1.188rem 0;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
   font-size: 1.25rem;
-  font-weight: bold;
+  font-weight: 900;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.18px;
   color: #888;
+  position: relative;
+  transform: translateY(-90%);
 }
 
 .form {
   display: flex;
+  position: relative;
+  transform: translateY(-50%);
+}
+
+.hr {
+  width: 90vw;
+  height: 0.5px;
+  margin: 2.5rem 0.063rem 1.813rem 0;
+  border: solid 1px #e8e8e8;
 }
 
 .input {
@@ -56,4 +68,33 @@
   background: rgb(0, 157, 255);
   color: white;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .cover {
+    width: 90vw;
+    margin: 10px auto;
+  }
+
+  .heading {
+    margin: 5px auto;
+  }
+
+  .form {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .input {
+    width: 80%;
+    height: 3vh;
+  }
+
+  .submit {
+    width: 8rem;
+    margin-top: 20px;
+    display: flex;
+    position: relative;
+    left: 35vw;
+  }
 }
