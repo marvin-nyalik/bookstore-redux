@@ -1,13 +1,14 @@
 .nav {
   display: flex;
   justify-content: space-between;
-  width: 98vw;
+  width: 95vw;
   font-family: montserrat, Arial, Helvetica, sans-serif;
   margin: 0 auto;
   align-items: center;
   height: 4rem;
   background: #fafafa;
   border-bottom: 1px solid lightgray;
+  overflow: hidden;
 }
 
 .cont {

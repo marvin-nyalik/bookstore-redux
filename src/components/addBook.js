@@ -30,6 +30,7 @@ const AddBook = () => {
 
   return (
     <div className={add.cover}>
+      <div className={add.hr} />
       <h3 className={add.heading}>ADD NEW BOOK</h3>
       <form className={add.form} onSubmit={handleSubmit}>
         <input

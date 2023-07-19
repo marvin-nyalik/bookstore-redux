@@ -2,6 +2,7 @@
 
 body {
   margin: 0;
+  box-sizing: border-box;
   font-family:
     montserrat,
     -apple-system,
@@ -17,7 +18,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: lightgrey;
+  background-color: #fafafa;
 }
 
 code {

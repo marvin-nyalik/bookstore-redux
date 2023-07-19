@@ -26,7 +26,7 @@ const BookInfo = ({ bookId }) => {
           className={infoCss.delete}
           onClick={() => deleteABook(book[0])}
         >
-          Delete
+          Remove
         </button>
         <span>|</span>
         {' '}
